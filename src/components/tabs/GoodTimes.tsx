@@ -5,7 +5,7 @@ import type { DetailsResult, MonthLevel } from "@/lib/types";
 const LEVEL_STYLE: Record<MonthLevel, { bg: string; border: string; color: string }> = {
   "매우 좋음": { bg: "rgba(232,120,154,0.15)", border: "rgba(232,120,154,0.3)", color: "#f5b8cc" },
   "좋음": { bg: "rgba(94,207,176,0.15)", border: "rgba(94,207,176,0.3)", color: "#5ecfb0" },
-  "보통": { bg: "rgba(255,255,255,0.05)", border: "rgba(255,255,255,0.1)", color: "#9b94b8" },
+  "보통": { bg: "rgba(255,255,255,0.05)", border: "rgba(255,255,255,0.1)", color: "#c4bdd9" },
   "다소 나쁨": { bg: "rgba(240,168,58,0.15)", border: "rgba(240,168,58,0.3)", color: "#f0a83a" },
   "나쁨": { bg: "rgba(232,120,90,0.15)", border: "rgba(232,120,90,0.3)", color: "#e8785a" },
 };

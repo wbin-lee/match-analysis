@@ -48,9 +48,9 @@ const config: Config = {
           dim: "rgba(94,168,223,0.12)",
         },
         txt: {
-          DEFAULT: "#ede9f8",
-          2: "#9b94b8",
-          3: "#5a5475",
+          DEFAULT: "#f4f0ff",
+          2: "#c4bdd9",
+          3: "#8a82a6",
         },
         border: {
           DEFAULT: "rgba(255,255,255,0.07)",
@@ -59,7 +59,7 @@ const config: Config = {
       },
       fontFamily: {
         serif: ["'Nanum Myeongjo'", "serif"],
-        sans: ["'Noto Sans KR'", "sans-serif"],
+        sans: ["'Pretendard'", "sans-serif"],
       },
       keyframes: {
         fadeUp: {

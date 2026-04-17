@@ -31,8 +31,8 @@ export default function TestPage() {
       <div className="card card-purple">
         <h3 className="mb-2 text-sm font-medium text-txt-2">입력 정보</h3>
         <div className="grid gap-4 text-sm md:grid-cols-2">
-          <PersonInfo label="A" person={mockRequest.personA} accent="pink" />
-          <PersonInfo label="B" person={mockRequest.personB} accent="purple" />
+          <PersonInfo label="첫번째 사람" person={mockRequest.personA} accent="pink" />
+          <PersonInfo label="두번째 사람" person={mockRequest.personB} accent="purple" />
         </div>
         <div className="mt-3 text-xs text-txt-3">
           관계: <span className="tag-pink tag">{mockRequest.relationship}</span>

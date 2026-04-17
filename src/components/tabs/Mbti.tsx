@@ -18,7 +18,7 @@ export default function Mbti({ data }: { data: DetailsResult["mbti"] }) {
             style={{ borderColor: accents[i].border }}
           >
             <h4 className="mb-3 text-sm font-medium text-txt-2">
-              {i === 0 ? "A" : "B"}의 강점
+              {i === 0 ? "첫번째 사람" : "두번째 사람"}의 강점
             </h4>
             <div className="flex flex-wrap gap-2">
               {data[key].strengths.map((s, j) => (

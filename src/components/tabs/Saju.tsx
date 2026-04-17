@@ -47,8 +47,8 @@ export default function Saju({ data }: { data: DetailsResult["saju"] }) {
   return (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2">
-        <ElementsBlock title="A의 오행" fe={data.personA} />
-        <ElementsBlock title="B의 오행" fe={data.personB} />
+        <ElementsBlock title="첫번째 사람의 오행" fe={data.personA} />
+        <ElementsBlock title="두번째 사람의 오행" fe={data.personB} />
       </div>
       <section>
         <h3 className="mb-2 font-serif text-base font-bold text-txt">오행 분석</h3>

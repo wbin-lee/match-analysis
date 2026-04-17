@@ -29,8 +29,8 @@ export default function Horoscope({ data }: { data: DetailsResult["horoscope"] }
   return (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2">
-        <Person title="A" block={data.personA} accent="pink" />
-        <Person title="B" block={data.personB} accent="purple" />
+        <Person title="첫번째 사람" block={data.personA} accent="pink" />
+        <Person title="두번째 사람" block={data.personB} accent="purple" />
       </div>
       <section>
         <h3 className="mb-3 font-serif text-base font-bold text-txt">조합 태그</h3>

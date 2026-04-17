@@ -20,7 +20,7 @@ export default function DatingStyle({
               style={{ borderColor: border }}
             >
               <h4 className="mb-3 text-sm font-medium text-txt-2">
-                {i === 0 ? "A" : "B"}의 연애 스타일
+                {i === 0 ? "첫번째 사람" : "두번째 사람"}의 연애 스타일
               </h4>
               <ul className="space-y-2 text-sm text-txt-2">
                 {data[k].map((s, j) => (

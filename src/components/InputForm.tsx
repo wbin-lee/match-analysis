@@ -80,8 +80,8 @@ export default function InputForm({ onSubmit, loading }: Props) {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        <PersonFields title="A" value={personA} onChange={setPersonA} accent="pink" />
-        <PersonFields title="B" value={personB} onChange={setPersonB} accent="purple" />
+        <PersonFields title="첫번째 사람" value={personA} onChange={setPersonA} accent="pink" />
+        <PersonFields title="두번째 사람" value={personB} onChange={setPersonB} accent="purple" />
       </div>
 
       <button
@@ -121,8 +121,8 @@ function PersonFields({
   return (
     <div className={cardClass}>
       <div className="mb-4 flex items-center gap-3">
-        <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold ${iconBg} ${titleColor}`}>
-          {title}
+        <div className={`flex h-10 w-10 items-center justify-center rounded-full text-xs font-bold ${iconBg} ${titleColor}`}>
+          {accent === "pink" ? "1" : "2"}
         </div>
         <h2 className={`font-serif text-lg font-bold ${titleColor}`}>{title}</h2>
       </div>
@@ -190,7 +190,7 @@ function PersonFields({
           padding: 0.5rem 0.75rem;
           font-size: 0.875rem;
           background: #1c1830;
-          color: #ede9f8;
+          color: #f4f0ff;
           transition: border-color 0.2s;
         }
         .input-dark:focus {
@@ -199,11 +199,11 @@ function PersonFields({
           box-shadow: 0 0 0 2px rgba(232,120,154,0.15);
         }
         .input-dark::placeholder {
-          color: #5a5475;
+          color: #8a82a6;
         }
         .input-dark option {
           background: #1c1830;
-          color: #ede9f8;
+          color: #f4f0ff;
         }
       `}</style>
     </div>

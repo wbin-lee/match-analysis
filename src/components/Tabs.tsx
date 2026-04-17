@@ -15,14 +15,14 @@ export default function Tabs({ tabs }: { tabs: TabDef[] }) {
   return (
     <div>
       <div
-        className="sticky top-0 z-10 -mx-4 mb-4 overflow-x-auto px-4 py-2"
+        className="sticky top-0 z-10 -mx-4 mb-4 px-4 py-2"
         style={{
           background: "rgba(10,9,16,0.88)",
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
         }}
       >
-        <div className="flex gap-2 whitespace-nowrap">
+        <div className="flex flex-wrap gap-2">
           {tabs.map((t) => (
             <button
               key={t.id}

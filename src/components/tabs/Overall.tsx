@@ -24,17 +24,17 @@ export default function Overall({ data }: { data: DetailsResult["overall"] }) {
         <ResponsiveContainer>
           <RadarChart data={data.radar}>
             <PolarGrid stroke="rgba(255,255,255,0.07)" />
-            <PolarAngleAxis dataKey="label" tick={{ fontSize: 12, fill: "#9b94b8" }} />
-            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: "#5a5475" }} />
-            <Radar name="A" dataKey="personA" stroke="#e8789a" fill="#e8789a" fillOpacity={0.25} />
-            <Radar name="B" dataKey="personB" stroke="#9b85e8" fill="#9b85e8" fillOpacity={0.2} />
+            <PolarAngleAxis dataKey="label" tick={{ fontSize: 12, fill: "#c4bdd9" }} />
+            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: "#8a82a6" }} />
+            <Radar name="첫번째 사람" dataKey="personA" stroke="#e8789a" fill="#e8789a" fillOpacity={0.25} />
+            <Radar name="두번째 사람" dataKey="personB" stroke="#9b85e8" fill="#9b85e8" fillOpacity={0.2} />
             <Legend wrapperStyle={{ color: "#9b94b8" }} />
             <Tooltip
               contentStyle={{
                 background: "#1c1830",
                 border: "1px solid rgba(255,255,255,0.12)",
                 borderRadius: 8,
-                color: "#ede9f8",
+                color: "#f4f0ff",
               }}
             />
           </RadarChart>
@@ -45,14 +45,14 @@ export default function Overall({ data }: { data: DetailsResult["overall"] }) {
         <ResponsiveContainer>
           <BarChart data={data.categoryScores}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.07)" />
-            <XAxis dataKey="label" tick={{ fontSize: 12, fill: "#9b94b8" }} />
-            <YAxis domain={[0, 100]} tick={{ fill: "#5a5475" }} />
+            <XAxis dataKey="label" tick={{ fontSize: 12, fill: "#c4bdd9" }} />
+            <YAxis domain={[0, 100]} tick={{ fill: "#8a82a6" }} />
             <Tooltip
               contentStyle={{
                 background: "#1c1830",
                 border: "1px solid rgba(255,255,255,0.12)",
                 borderRadius: 8,
-                color: "#ede9f8",
+                color: "#f4f0ff",
               }}
             />
             <Bar dataKey="score" fill="#e8789a" radius={[8, 8, 0, 0]} />

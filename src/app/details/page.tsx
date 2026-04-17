@@ -33,11 +33,14 @@ export default function DetailsPage() {
 
   const tabs = useMemo<TabDef[]>(() => {
     if (!details || !request) return [];
+    const nameA = request.personA.name || "첫번째 사람";
+    const nameB = request.personB.name || "두번째 사람";
+    const names = { nameA, nameB };
     const base: TabDef[] = [
-      { id: "overall", label: "총평", render: () => <Overall data={details.overall} /> },
-      { id: "saju", label: "사주(오행)", render: () => <Saju data={details.saju} /> },
-      { id: "horoscope", label: "별자리", render: () => <Horoscope data={details.horoscope} /> },
-      { id: "mbti", label: "MBTI", render: () => <Mbti data={details.mbti} /> },
+      { id: "overall", label: "총평", render: () => <Overall data={details.overall} names={names} /> },
+      { id: "saju", label: "사주(오행)", render: () => <Saju data={details.saju} names={names} /> },
+      { id: "horoscope", label: "별자리", render: () => <Horoscope data={details.horoscope} names={names} /> },
+      { id: "mbti", label: "MBTI", render: () => <Mbti data={details.mbti} names={names} /> },
       { id: "goodTimes", label: "올해 함께하기 좋은 때", render: () => <GoodTimes data={details.goodTimes} /> },
       { id: "conflict", label: "갈등 해결", render: () => <Conflict data={details.conflict} /> },
       { id: "goodThings", label: "함께 하면 좋은 것", render: () => <GoodThings data={details.goodThings} /> },
@@ -48,7 +51,7 @@ export default function DetailsPage() {
         base.push({
           id: "datingStyle",
           label: "연애 스타일",
-          render: () => <DatingStyle data={details.datingStyle!} />,
+          render: () => <DatingStyle data={details.datingStyle!} names={names} />,
         });
       }
       if (details.marriageChildren) {
@@ -72,7 +75,7 @@ export default function DetailsPage() {
         <h2 className="font-serif text-lg font-bold text-txt">
           상세 분석
           <span className="ml-2 text-sm font-normal text-txt-3">
-            ({request.personA.name || "A"} × {request.personB.name || "B"} · {request.relationship})
+            ({request.personA.name || "첫번째 사람"} × {request.personB.name || "두번째 사람"} · {request.relationship})
           </span>
         </h2>
         <button
