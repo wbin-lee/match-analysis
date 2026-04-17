@@ -1,8 +1,9 @@
 "use client";
 
-import type { DetailsResult } from "@/lib/types";
+import type { DetailsResult, Names } from "@/lib/types";
 
-export default function Mbti({ data }: { data: DetailsResult["mbti"] }) {
+export default function Mbti({ data, names }: { data: DetailsResult["mbti"]; names: Names }) {
+  const labels = [names.nameA, names.nameB];
   const accents = [
     { border: "rgba(232,120,154,0.22)", tagBg: "rgba(232,120,154,0.12)", tagColor: "#f5b8cc", tagBorder: "rgba(232,120,154,0.2)" },
     { border: "rgba(155,133,232,0.22)", tagBg: "rgba(155,133,232,0.12)", tagColor: "#c4b5f8", tagBorder: "rgba(155,133,232,0.2)" },
@@ -18,7 +19,7 @@ export default function Mbti({ data }: { data: DetailsResult["mbti"] }) {
             style={{ borderColor: accents[i].border }}
           >
             <h4 className="mb-3 text-sm font-medium text-txt-2">
-              {i === 0 ? "첫번째 사람" : "두번째 사람"}의 강점
+              {labels[i]}의 강점
             </h4>
             <div className="flex flex-wrap gap-2">
               {data[key].strengths.map((s, j) => (

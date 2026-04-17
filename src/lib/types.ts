@@ -1,3 +1,8 @@
+export interface Names {
+  nameA: string;
+  nameB: string;
+}
+
 export type Gender = "남성" | "여성" | "기타";
 
 export type Relationship =

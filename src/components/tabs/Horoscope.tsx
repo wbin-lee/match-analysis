@@ -1,6 +1,6 @@
 "use client";
 
-import type { DetailsResult, ZodiacBlock } from "@/lib/types";
+import type { DetailsResult, Names, ZodiacBlock } from "@/lib/types";
 
 function Person({ title, block, accent }: { title: string; block: ZodiacBlock; accent: "pink" | "purple" }) {
   const borderColor = accent === "pink" ? "rgba(232,120,154,0.22)" : "rgba(155,133,232,0.22)";
@@ -25,12 +25,12 @@ function Person({ title, block, accent }: { title: string; block: ZodiacBlock; a
   );
 }
 
-export default function Horoscope({ data }: { data: DetailsResult["horoscope"] }) {
+export default function Horoscope({ data, names }: { data: DetailsResult["horoscope"]; names: Names }) {
   return (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2">
-        <Person title="첫번째 사람" block={data.personA} accent="pink" />
-        <Person title="두번째 사람" block={data.personB} accent="purple" />
+        <Person title={names.nameA} block={data.personA} accent="pink" />
+        <Person title={names.nameB} block={data.personB} accent="purple" />
       </div>
       <section>
         <h3 className="mb-3 font-serif text-base font-bold text-txt">조합 태그</h3>

@@ -15,9 +15,9 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import type { DetailsResult } from "@/lib/types";
+import type { DetailsResult, Names } from "@/lib/types";
 
-export default function Overall({ data }: { data: DetailsResult["overall"] }) {
+export default function Overall({ data, names }: { data: DetailsResult["overall"]; names: Names }) {
   return (
     <div className="space-y-8">
       <div className="h-80 w-full">
@@ -26,9 +26,9 @@ export default function Overall({ data }: { data: DetailsResult["overall"] }) {
             <PolarGrid stroke="rgba(255,255,255,0.07)" />
             <PolarAngleAxis dataKey="label" tick={{ fontSize: 12, fill: "#c4bdd9" }} />
             <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: "#8a82a6" }} />
-            <Radar name="첫번째 사람" dataKey="personA" stroke="#e8789a" fill="#e8789a" fillOpacity={0.25} />
-            <Radar name="두번째 사람" dataKey="personB" stroke="#9b85e8" fill="#9b85e8" fillOpacity={0.2} />
-            <Legend wrapperStyle={{ color: "#9b94b8" }} />
+            <Radar name={names.nameA} dataKey="personA" stroke="#e8789a" fill="#e8789a" fillOpacity={0.25} />
+            <Radar name={names.nameB} dataKey="personB" stroke="#9b85e8" fill="#9b85e8" fillOpacity={0.2} />
+            <Legend wrapperStyle={{ color: "#c4bdd9" }} />
             <Tooltip
               contentStyle={{
                 background: "#1c1830",

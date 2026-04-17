@@ -1,6 +1,6 @@
 "use client";
 
-import type { DetailsResult, FiveElements } from "@/lib/types";
+import type { DetailsResult, FiveElements, Names } from "@/lib/types";
 
 const LABELS: { key: keyof FiveElements; label: string; color: string; bg: string }[] = [
   { key: "wood", label: "목(木)", color: "#a8d470", bg: "rgba(168,212,112,0.25)" },
@@ -43,12 +43,12 @@ function ElementsBlock({ title, fe }: { title: string; fe: FiveElements }) {
   );
 }
 
-export default function Saju({ data }: { data: DetailsResult["saju"] }) {
+export default function Saju({ data, names }: { data: DetailsResult["saju"]; names: Names }) {
   return (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2">
-        <ElementsBlock title="첫번째 사람의 오행" fe={data.personA} />
-        <ElementsBlock title="두번째 사람의 오행" fe={data.personB} />
+        <ElementsBlock title={`${names.nameA}의 오행`} fe={data.personA} />
+        <ElementsBlock title={`${names.nameB}의 오행`} fe={data.personB} />
       </div>
       <section>
         <h3 className="mb-2 font-serif text-base font-bold text-txt">오행 분석</h3>
