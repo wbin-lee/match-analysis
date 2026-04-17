@@ -70,17 +70,17 @@ export default function DetailsPage() {
   }
 
   return (
-    <main className="space-y-4">
+    <main className="space-y-5">
       <div className="flex items-center justify-between">
         <h2 className="font-serif text-lg font-bold text-txt">
           상세 분석
-          <span className="ml-2 text-sm font-normal text-txt-3">
+          <span className="ml-2 text-[14px] font-normal text-txt-3">
             ({request.personA.name || "첫번째 사람"} × {request.personB.name || "두번째 사람"} · {request.relationship})
           </span>
         </h2>
         <button
           onClick={() => router.push("/")}
-          className="text-sm text-txt-3 underline transition hover:text-txt-2"
+          className="text-sm text-txt-3 underline transition hover:text-txt"
         >
           처음으로
         </button>

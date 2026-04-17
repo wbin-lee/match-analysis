@@ -26,13 +26,13 @@ function Bar({ value, color, bg }: { value: number; color: string; bg: string })
 
 function ElementsBlock({ title, fe }: { title: string; fe: FiveElements }) {
   return (
-    <div className="rounded-xl border border-border bg-surface-2 p-4">
-      <h4 className="mb-3 font-serif text-sm font-bold text-txt">{title}</h4>
-      <ul className="space-y-2">
+    <div className="card-inner">
+      <h4 className="mb-4 font-serif text-sm font-bold text-txt">{title}</h4>
+      <ul className="space-y-3">
         {LABELS.map(({ key, label, color, bg }) => (
-          <li key={key} className="space-y-1">
-            <div className="flex items-center justify-between text-xs">
-              <span style={{ color }}>{label}</span>
+          <li key={key} className="space-y-1.5">
+            <div className="flex items-center justify-between text-[13px]">
+              <span className="font-medium" style={{ color }}>{label}</span>
               <span className="font-mono text-txt-3">{fe[key] ?? 0}</span>
             </div>
             <Bar value={(fe[key] as number) ?? 0} color={color} bg={bg} />
@@ -45,16 +45,14 @@ function ElementsBlock({ title, fe }: { title: string; fe: FiveElements }) {
 
 export default function Saju({ data, names }: { data: DetailsResult["saju"]; names: Names }) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="grid gap-4 md:grid-cols-2">
         <ElementsBlock title={`${names.nameA}의 오행`} fe={data.personA} />
         <ElementsBlock title={`${names.nameB}의 오행`} fe={data.personB} />
       </div>
       <section>
-        <h3 className="mb-2 font-serif text-base font-bold text-txt">오행 분석</h3>
-        <p className="whitespace-pre-line text-sm leading-relaxed text-txt-2">
-          {data.analysis}
-        </p>
+        <h3 className="section-heading">오행 분석</h3>
+        <p className="body-text">{data.analysis}</p>
       </section>
     </div>
   );

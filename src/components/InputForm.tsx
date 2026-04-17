@@ -53,7 +53,7 @@ export default function InputForm({ onSubmit, loading }: Props) {
   return (
     <form onSubmit={handleSubmit} className="animate-fadeUp space-y-6">
       <div className="card card-purple">
-        <label className="mb-2 block text-sm font-medium text-txt-2">
+        <label className="mb-3 block text-sm font-medium text-txt">
           관계 유형
         </label>
         <div className="flex flex-wrap gap-2">
@@ -62,15 +62,15 @@ export default function InputForm({ onSubmit, loading }: Props) {
               key={r}
               type="button"
               onClick={() => setRelationship(r)}
-              className={`rounded-full px-4 py-1.5 text-sm transition ${
+              className={`rounded-full px-5 py-2 text-sm transition ${
                 relationship === r
                   ? "bg-brand-dim font-medium text-brand-light"
-                  : "text-txt-3 hover:bg-surface-2 hover:text-txt-2"
+                  : "text-txt-3 hover:bg-surface-2 hover:text-txt"
               }`}
               style={
                 relationship === r
                   ? { border: "1px solid rgba(232,120,154,0.4)" }
-                  : { border: "1px solid transparent" }
+                  : { border: "1px solid rgba(255,255,255,0.06)" }
               }
             >
               {r}
@@ -87,11 +87,11 @@ export default function InputForm({ onSubmit, loading }: Props) {
       <button
         type="submit"
         disabled={!isValid() || loading}
-        className="w-full rounded-xl py-3 text-base font-semibold text-white shadow-md transition disabled:cursor-not-allowed disabled:opacity-40"
+        className="w-full rounded-xl py-3.5 text-base font-semibold text-white shadow-lg transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
         style={{
           background: isValid() && !loading
             ? "linear-gradient(135deg, #e8789a, #9b85e8)"
-            : "#221e38",
+            : "#262042",
         }}
       >
         {loading ? "분석 중..." : "궁합 분석하기"}
@@ -120,13 +120,13 @@ function PersonFields({
 
   return (
     <div className={cardClass}>
-      <div className="mb-4 flex items-center gap-3">
+      <div className="mb-5 flex items-center gap-3">
         <div className={`flex h-10 w-10 items-center justify-center rounded-full text-xs font-bold ${iconBg} ${titleColor}`}>
           {accent === "pink" ? "1" : "2"}
         </div>
         <h2 className={`font-serif text-lg font-bold ${titleColor}`}>{title}</h2>
       </div>
-      <div className="space-y-3">
+      <div className="space-y-4">
         <Field label="이름">
           <input
             className="input-dark"
@@ -185,25 +185,25 @@ function PersonFields({
       <style jsx>{`
         .input-dark {
           width: 100%;
-          border-radius: 0.5rem;
-          border: 1px solid rgba(255,255,255,0.07);
-          padding: 0.5rem 0.75rem;
-          font-size: 0.875rem;
-          background: #1c1830;
-          color: #f4f0ff;
-          transition: border-color 0.2s;
+          border-radius: 0.625rem;
+          border: 1px solid rgba(255,255,255,0.1);
+          padding: 0.625rem 0.875rem;
+          font-size: 0.9375rem;
+          background: #1e1a38;
+          color: #f8f5ff;
+          transition: border-color 0.2s, box-shadow 0.2s;
         }
         .input-dark:focus {
           outline: none;
           border-color: rgba(232,120,154,0.5);
-          box-shadow: 0 0 0 2px rgba(232,120,154,0.15);
+          box-shadow: 0 0 0 3px rgba(232,120,154,0.12);
         }
         .input-dark::placeholder {
-          color: #8a82a6;
+          color: #a49cbd;
         }
         .input-dark option {
-          background: #1c1830;
-          color: #f4f0ff;
+          background: #1e1a38;
+          color: #f8f5ff;
         }
       `}</style>
     </div>
@@ -219,7 +219,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-txt-3">{label}</span>
+      <span className="mb-1.5 block text-[13px] font-medium text-txt-2">{label}</span>
       {children}
     </label>
   );

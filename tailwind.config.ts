@@ -7,9 +7,9 @@ const config: Config = {
       colors: {
         bg: "#0a0910",
         surface: {
-          DEFAULT: "#141120",
-          2: "#1c1830",
-          3: "#221e38",
+          DEFAULT: "#15122a",
+          2: "#1e1a38",
+          3: "#262042",
         },
         brand: {
           DEFAULT: "#e8789a",
@@ -48,13 +48,13 @@ const config: Config = {
           dim: "rgba(94,168,223,0.12)",
         },
         txt: {
-          DEFAULT: "#f4f0ff",
-          2: "#c4bdd9",
-          3: "#8a82a6",
+          DEFAULT: "#f8f5ff",
+          2: "#d5cfe8",
+          3: "#a49cbd",
         },
         border: {
-          DEFAULT: "rgba(255,255,255,0.07)",
-          2: "rgba(255,255,255,0.12)",
+          DEFAULT: "rgba(255,255,255,0.08)",
+          2: "rgba(255,255,255,0.14)",
         },
       },
       fontFamily: {

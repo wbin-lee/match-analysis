@@ -20,12 +20,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <div className="mx-auto min-h-screen w-full max-w-[860px] px-4 py-8 md:px-6 md:py-14">
-          <header className="mb-10 flex items-center justify-between">
-            <h1 className="font-serif text-2xl font-bold text-brand-light">
-              <a href="/" className="transition hover:opacity-80">궁합 분석</a>
+        <div className="mx-auto min-h-screen w-full max-w-[860px] px-5 py-10 md:px-8 md:py-16">
+          <header className="mb-12 flex items-center justify-between">
+            <h1 className="font-serif text-[26px] font-bold tracking-wide">
+              <a href="/" className="gradient-text transition hover:opacity-80">Chemistry Lab.</a>
             </h1>
-            <span className="text-sm text-txt-3">사주 · 별자리 · MBTI</span>
+            <span className="text-[13px] tracking-wide text-txt-3">궁합 연구소</span>
           </header>
           {children}
         </div>

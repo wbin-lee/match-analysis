@@ -24,17 +24,17 @@ export default function Overall({ data, names }: { data: DetailsResult["overall"
   }));
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div className="h-80 w-full">
         <ResponsiveContainer>
           <RadarChart data={combined}>
-            <PolarGrid stroke="rgba(255,255,255,0.07)" />
+            <PolarGrid stroke="rgba(255,255,255,0.08)" />
             <PolarAngleAxis
               dataKey="label"
               tick={({ payload, x, y, textAnchor, ...rest }) => {
                 const item = combined.find((c) => c.label === payload.value);
                 return (
-                  <text x={x} y={y} textAnchor={textAnchor} fill="#f4f0ff" fontSize={12} fontWeight={500} {...rest}>
+                  <text x={x} y={y} textAnchor={textAnchor} fill="#f5b8cc" fontSize={13} fontWeight={500} {...rest}>
                     {payload.value} <tspan fill="#f5b8cc" fontWeight={600}>{item?.score ?? ""}</tspan>
                   </text>
                 );
@@ -54,13 +54,14 @@ export default function Overall({ data, names }: { data: DetailsResult["overall"
                 <stop offset="100%" stopColor="#9b85e8" />
               </linearGradient>
             </defs>
-            <Legend wrapperStyle={{ color: "#c4bdd9" }} />
+            <Legend wrapperStyle={{ color: "#d5cfe8", fontSize: 13 }} />
             <Tooltip
               contentStyle={{
-                background: "#1c1830",
-                border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: 8,
-                color: "#f4f0ff",
+                background: "#1e1a38",
+                border: "1px solid rgba(255,255,255,0.14)",
+                borderRadius: 10,
+                color: "#f8f5ff",
+                fontSize: 13,
               }}
             />
           </RadarChart>
@@ -70,15 +71,16 @@ export default function Overall({ data, names }: { data: DetailsResult["overall"
       <div className="h-64 w-full">
         <ResponsiveContainer>
           <BarChart data={data.categoryScores}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.07)" />
-            <XAxis dataKey="label" tick={{ fontSize: 12, fill: "#c4bdd9" }} />
-            <YAxis domain={[0, 100]} tick={{ fill: "#8a82a6" }} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+            <XAxis dataKey="label" tick={{ fontSize: 13, fill: "#d5cfe8" }} />
+            <YAxis domain={[0, 100]} tick={{ fill: "#a49cbd", fontSize: 12 }} />
             <Tooltip
               contentStyle={{
-                background: "#1c1830",
-                border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: 8,
-                color: "#f4f0ff",
+                background: "#1e1a38",
+                border: "1px solid rgba(255,255,255,0.14)",
+                borderRadius: 10,
+                color: "#f8f5ff",
+                fontSize: 13,
               }}
             />
             <Bar dataKey="score" fill="#e8789a" radius={[8, 8, 0, 0]} />
@@ -87,10 +89,8 @@ export default function Overall({ data, names }: { data: DetailsResult["overall"
       </div>
 
       <section>
-        <h3 className="mb-2 font-serif text-base font-bold text-txt">핵심 요약</h3>
-        <p className="whitespace-pre-line text-sm leading-relaxed text-txt-2">
-          {data.summary}
-        </p>
+        <h3 className="section-heading">핵심 요약</h3>
+        <p className="body-text">{data.summary}</p>
       </section>
     </div>
   );

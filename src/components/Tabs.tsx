@@ -15,11 +15,12 @@ export default function Tabs({ tabs }: { tabs: TabDef[] }) {
   return (
     <div>
       <div
-        className="sticky top-0 z-10 -mx-4 mb-4 px-4 py-2"
+        className="sticky top-0 z-10 -mx-5 mb-5 px-5 py-3 md:-mx-8 md:px-8"
         style={{
-          background: "rgba(10,9,16,0.88)",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
+          background: "rgba(10,9,16,0.85)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          borderBottom: "1px solid rgba(255,255,255,0.04)",
         }}
       >
         <div className="flex flex-wrap gap-2">
@@ -27,18 +28,19 @@ export default function Tabs({ tabs }: { tabs: TabDef[] }) {
             <button
               key={t.id}
               onClick={() => setActive(t.id)}
-              className={`rounded-full px-4 py-2 text-sm transition ${
+              className={`rounded-full px-4 py-2 text-[13px] transition ${
                 t.id === active
                   ? "font-medium text-brand-light"
-                  : "text-txt-3 hover:bg-surface hover:text-txt-2"
+                  : "text-txt-3 hover:bg-surface-2 hover:text-txt"
               }`}
               style={
                 t.id === active
                   ? {
-                      background: "rgba(232,120,154,0.12)",
-                      border: "1px solid rgba(232,120,154,0.4)",
+                      background: "rgba(232,120,154,0.14)",
+                      border: "1px solid rgba(232,120,154,0.35)",
+                      boxShadow: "0 0 8px rgba(232,120,154,0.1)",
                     }
-                  : { border: "1px solid transparent" }
+                  : { border: "1px solid rgba(255,255,255,0.05)" }
               }
             >
               {t.label}

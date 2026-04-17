@@ -13,10 +13,12 @@ body {
 
 body {
   background: #0a0910;
-  color: #f4f0ff;
+  color: #f8f5ff;
   font-family: 'Pretendard', sans-serif;
   font-weight: 400;
-  line-height: 1.75;
+  font-size: 15px;
+  line-height: 1.8;
+  letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -28,16 +30,16 @@ body::before {
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.5), transparent),
-    radial-gradient(1.5px 1.5px at 80% 15%, rgba(232,120,154,0.4), transparent),
-    radial-gradient(1px 1px at 30% 60%, rgba(155,133,232,0.35), transparent),
-    radial-gradient(1px 1px at 55% 40%, rgba(255,255,255,0.4), transparent),
-    radial-gradient(1.5px 1.5px at 70% 75%, rgba(94,207,176,0.3), transparent),
-    radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(2px 2px at 90% 50%, rgba(232,120,154,0.3), transparent),
-    radial-gradient(1px 1px at 45% 90%, rgba(155,133,232,0.3), transparent),
-    radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,0.45), transparent),
-    radial-gradient(1.5px 1.5px at 25% 35%, rgba(94,207,176,0.25), transparent);
+    radial-gradient(1.2px 1.2px at 10% 20%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 80% 15%, rgba(232,120,154,0.5), transparent),
+    radial-gradient(1px 1px at 30% 60%, rgba(155,133,232,0.4), transparent),
+    radial-gradient(1.2px 1.2px at 55% 40%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 70% 75%, rgba(94,207,176,0.35), transparent),
+    radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(2px 2px at 90% 50%, rgba(232,120,154,0.35), transparent),
+    radial-gradient(1px 1px at 45% 90%, rgba(155,133,232,0.35), transparent),
+    radial-gradient(1.2px 1.2px at 60% 10%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1.5px 1.5px at 25% 35%, rgba(94,207,176,0.3), transparent);
   pointer-events: none;
 }
 
@@ -48,31 +50,51 @@ body::after {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(ellipse 600px 400px at 15% 10%, rgba(155,133,232,0.07), transparent),
-    radial-gradient(ellipse 500px 500px at 85% 90%, rgba(232,120,154,0.08), transparent);
+    radial-gradient(ellipse 700px 500px at 10% 5%, rgba(155,133,232,0.1), transparent),
+    radial-gradient(ellipse 600px 600px at 90% 90%, rgba(232,120,154,0.1), transparent);
   pointer-events: none;
 }
 
 /* Card base */
 @layer components {
   .card {
-    @apply rounded-[14px] border border-border bg-surface p-5;
+    @apply rounded-2xl border border-border bg-surface p-6;
+    box-shadow:
+      0 2px 12px rgba(0,0,0,0.3),
+      0 0 1px rgba(255,255,255,0.05) inset;
   }
   .card-pink {
-    border-color: rgba(232,120,154,0.22);
-    background: linear-gradient(135deg, #141120, rgba(232,120,154,0.04));
+    border-color: rgba(232,120,154,0.18);
+    background: linear-gradient(145deg, #15122a 0%, rgba(232,120,154,0.06) 100%);
+    box-shadow:
+      0 2px 16px rgba(232,120,154,0.08),
+      0 0 1px rgba(232,120,154,0.15) inset;
   }
   .card-purple {
-    border-color: rgba(155,133,232,0.22);
-    background: linear-gradient(135deg, #141120, rgba(155,133,232,0.04));
+    border-color: rgba(155,133,232,0.18);
+    background: linear-gradient(145deg, #15122a 0%, rgba(155,133,232,0.06) 100%);
+    box-shadow:
+      0 2px 16px rgba(155,133,232,0.08),
+      0 0 1px rgba(155,133,232,0.15) inset;
   }
   .card-teal {
-    border-color: rgba(94,207,176,0.22);
-    background: linear-gradient(135deg, #141120, rgba(94,207,176,0.04));
+    border-color: rgba(94,207,176,0.18);
+    background: linear-gradient(145deg, #15122a 0%, rgba(94,207,176,0.06) 100%);
+    box-shadow:
+      0 2px 16px rgba(94,207,176,0.06),
+      0 0 1px rgba(94,207,176,0.1) inset;
   }
   .card-amber {
-    border-color: rgba(240,168,58,0.22);
-    background: linear-gradient(135deg, #141120, rgba(240,168,58,0.04));
+    border-color: rgba(240,168,58,0.18);
+    background: linear-gradient(145deg, #15122a 0%, rgba(240,168,58,0.06) 100%);
+    box-shadow:
+      0 2px 16px rgba(240,168,58,0.06),
+      0 0 1px rgba(240,168,58,0.1) inset;
+  }
+
+  /* Inner card (nested inside .card) */
+  .card-inner {
+    @apply rounded-xl border border-border-2 bg-surface-2 p-4;
   }
 
   /* Tag base */
@@ -81,15 +103,15 @@ body::after {
   }
   .tag-pink {
     @apply bg-brand-dim text-brand-light;
-    border: 1px solid rgba(232,120,154,0.2);
+    border: 1px solid rgba(232,120,154,0.25);
   }
   .tag-purple {
     @apply bg-purple-dim text-purple-light;
-    border: 1px solid rgba(155,133,232,0.2);
+    border: 1px solid rgba(155,133,232,0.25);
   }
   .tag-teal {
     @apply bg-teal-dim text-teal;
-    border: 1px solid rgba(94,207,176,0.2);
+    border: 1px solid rgba(94,207,176,0.25);
   }
 
   /* Gradient text */
@@ -100,15 +122,32 @@ body::after {
     background-clip: text;
   }
 
+  /* Section heading */
+  .section-heading {
+    @apply mb-4 font-serif text-base font-bold text-txt;
+    letter-spacing: 0.02em;
+  }
+
+  /* Body paragraph */
+  .body-text {
+    @apply whitespace-pre-line text-[15px] leading-[1.85] text-txt-2;
+  }
+
   /* Bar track for progress bars */
   .bar-track {
-    @apply h-[5px] w-full rounded-full;
-    background: #221e38;
+    @apply h-[6px] w-full rounded-full;
+    background: #262042;
   }
   .bar-fill {
     @apply h-full rounded-full;
     transition: width 1.4s cubic-bezier(.4,0,.2,1);
   }
+}
+
+/* Selection */
+::selection {
+  background: rgba(232,120,154,0.3);
+  color: #fff;
 }
 
 /* Scrollbar styling */
@@ -120,6 +159,9 @@ body::after {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(155,133,232,0.3);
+  background: rgba(155,133,232,0.35);
   border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(155,133,232,0.5);
 }
