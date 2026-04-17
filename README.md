@@ -36,6 +36,12 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run start` | Serve production build |
 | `npm run lint` | Run ESLint |
 
+## Test Mode
+
+Visit [http://localhost:3000/test](http://localhost:3000/test) to preview the full UI with example data — **no API key or Claude calls required**. The test page displays a pre-built sample analysis (김하늘 × 이우진, 연인) including summary and all detail tabs.
+
+Mock data is defined in `src/lib/mock-data.ts`.
+
 ## How It Works
 
 Two-stage API flow for token control:
