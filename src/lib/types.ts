@@ -63,7 +63,7 @@ export interface DetailsResult {
   saju: {
     personA: FiveElements;
     personB: FiveElements;
-    analysis: string;
+    analysis: string | string[];
   };
   horoscope: {
     personA: ZodiacBlock;

@@ -111,6 +111,8 @@ function PersonFields({
   onChange: (p: Person) => void;
   accent: "pink" | "purple";
 }) {
+  const [unknownTime, setUnknownTime] = useState(value.birthTime === "모름");
+  const [unknownPlace, setUnknownPlace] = useState(value.birthPlace === "모름");
   const patch = (p: Partial<Person>) => onChange({ ...value, ...p });
   const cardClass = accent === "pink" ? "card card-pink" : "card card-purple";
   const titleColor = accent === "pink" ? "text-brand-light" : "text-purple-light";
@@ -144,12 +146,28 @@ function PersonFields({
           />
         </Field>
         <Field label="출생 시간">
-          <input
-            type="time"
-            className="input-dark"
-            value={value.birthTime}
-            onChange={(e) => patch({ birthTime: e.target.value })}
-          />
+          <div className="space-y-2">
+            <input
+              type="time"
+              className="input-dark"
+              value={unknownTime ? "" : value.birthTime}
+              onChange={(e) => patch({ birthTime: e.target.value })}
+              disabled={unknownTime}
+              style={unknownTime ? { opacity: 0.4 } : undefined}
+            />
+            <label className="flex items-center gap-2 text-[13px] text-txt-3 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={unknownTime}
+                onChange={(e) => {
+                  setUnknownTime(e.target.checked);
+                  patch({ birthTime: e.target.checked ? "모름" : "" });
+                }}
+                className="accent-brand"
+              />
+              모름
+            </label>
+          </div>
         </Field>
         <Field label="성별">
           <select
@@ -163,12 +181,28 @@ function PersonFields({
           </select>
         </Field>
         <Field label="출생지">
-          <input
-            className="input-dark"
-            value={value.birthPlace}
-            onChange={(e) => patch({ birthPlace: e.target.value })}
-            placeholder="서울"
-          />
+          <div className="space-y-2">
+            <input
+              className="input-dark"
+              value={unknownPlace ? "" : value.birthPlace}
+              onChange={(e) => patch({ birthPlace: e.target.value })}
+              placeholder="서울"
+              disabled={unknownPlace}
+              style={unknownPlace ? { opacity: 0.4 } : undefined}
+            />
+            <label className="flex items-center gap-2 text-[13px] text-txt-3 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={unknownPlace}
+                onChange={(e) => {
+                  setUnknownPlace(e.target.checked);
+                  patch({ birthPlace: e.target.checked ? "모름" : "" });
+                }}
+                className="accent-brand"
+              />
+              모름
+            </label>
+          </div>
         </Field>
         <Field label="MBTI">
           <select

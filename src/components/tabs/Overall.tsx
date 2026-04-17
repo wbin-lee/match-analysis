@@ -35,7 +35,7 @@ export default function Overall({ data, names }: { data: DetailsResult["overall"
                 const item = combined.find((c) => c.label === payload.value);
                 return (
                   <text x={x} y={y} textAnchor={textAnchor} fill="#f5b8cc" fontSize={13} fontWeight={500} {...rest}>
-                    {payload.value} <tspan fill="#f5b8cc" fontWeight={600}>{item?.score ?? ""}</tspan>
+                     <tspan fill="#f5b8cc" fontWeight={600}>{payload.value} {item?.score ?? ""}</tspan>
                   </text>
                 );
               }}
@@ -70,7 +70,7 @@ export default function Overall({ data, names }: { data: DetailsResult["overall"
 
       <div className="h-64 w-full">
         <ResponsiveContainer>
-          <BarChart data={data.categoryScores}>
+          <BarChart data={data.categoryScores.filter((c) => !/신뢰|trust|bond/i.test(c.label))}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
             <XAxis dataKey="label" tick={{ fontSize: 13, fill: "#d5cfe8" }} />
             <YAxis domain={[0, 100]} tick={{ fill: "#a49cbd", fontSize: 12 }} />

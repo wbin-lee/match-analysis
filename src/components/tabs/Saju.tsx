@@ -52,7 +52,11 @@ export default function Saju({ data, names }: { data: DetailsResult["saju"]; nam
       </div>
       <section>
         <h3 className="section-heading">오행 분석</h3>
-        <p className="body-text">{data.analysis}</p>
+        <div className="space-y-4">
+          {(Array.isArray(data.analysis) ? data.analysis : data.analysis.split("\n\n")).map((p, i) => (
+            <p key={i} className="body-text">{p}</p>
+          ))}
+        </div>
       </section>
     </div>
   );

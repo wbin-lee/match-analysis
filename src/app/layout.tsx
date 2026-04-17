@@ -9,18 +9,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-        />
-      </head>
-      <body>
-        <div className="mx-auto min-h-screen w-full max-w-[860px] px-5 py-10 md:px-8 md:py-16">
+      <body className="font-sans">
+        <div className="mx-auto min-h-screen w-full max-w-[860px] px-5 pt-4 pb-10 md:px-8 md:pt-6 md:pb-16">
           <header className="mb-12 flex items-center justify-between">
             <h1 className="font-serif text-[26px] font-bold tracking-wide">
               <a href="/" className="gradient-text transition hover:opacity-80">Chemistry Lab.</a>
