@@ -1,46 +1,20 @@
-import { promises as fs } from "fs";
-import path from "path";
 import type { FiveElements, Person } from "./types";
 import { personKey } from "./personKey";
 import { callClaude } from "./claude";
 
-const STORE_PATH = path.join(process.cwd(), "data", "five-elements.json");
-
-type Store = Record<string, FiveElements>;
-
-let writeLock: Promise<void> = Promise.resolve();
-
-async function readStore(): Promise<Store> {
-  try {
-    const raw = await fs.readFile(STORE_PATH, "utf8");
-    return JSON.parse(raw) as Store;
-  } catch (err: unknown) {
-    if ((err as NodeJS.ErrnoException)?.code === "ENOENT") return {};
-    throw err;
-  }
-}
-
-async function writeStore(store: Store): Promise<void> {
-  const next = writeLock.then(async () => {
-    await fs.mkdir(path.dirname(STORE_PATH), { recursive: true });
-    await fs.writeFile(STORE_PATH, JSON.stringify(store, null, 2), "utf8");
-  });
-  writeLock = next.catch(() => undefined);
-  await next;
-}
+// In-memory cache (sufficient for serverless — each cold start resets)
+const memoryStore = new Map<string, FiveElements>();
 
 export async function getOrComputeFiveElements(
   person: Person
 ): Promise<FiveElements> {
   const key = personKey(person);
-  const store = await readStore();
-  if (store[key]) return store[key];
+  const cached = memoryStore.get(key);
+  if (cached) return cached;
 
   const computed = await computeFiveElements(person);
   const record: FiveElements = { ...computed, computedAt: new Date().toISOString() };
-  const fresh = await readStore();
-  fresh[key] = record;
-  await writeStore(fresh);
+  memoryStore.set(key, record);
   return record;
 }
 
