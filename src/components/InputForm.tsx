@@ -51,9 +51,9 @@ export default function InputForm({ onSubmit, loading }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="rounded-2xl bg-white/80 p-5 shadow-sm ring-1 ring-slate-200">
-        <label className="mb-2 block text-sm font-semibold text-slate-700">
+    <form onSubmit={handleSubmit} className="animate-fadeUp space-y-6">
+      <div className="card card-purple">
+        <label className="mb-2 block text-sm font-medium text-txt-2">
           관계 유형
         </label>
         <div className="flex flex-wrap gap-2">
@@ -64,9 +64,14 @@ export default function InputForm({ onSubmit, loading }: Props) {
               onClick={() => setRelationship(r)}
               className={`rounded-full px-4 py-1.5 text-sm transition ${
                 relationship === r
-                  ? "bg-brand-600 text-white"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  ? "bg-brand-dim font-medium text-brand-light"
+                  : "text-txt-3 hover:bg-surface-2 hover:text-txt-2"
               }`}
+              style={
+                relationship === r
+                  ? { border: "1px solid rgba(232,120,154,0.4)" }
+                  : { border: "1px solid transparent" }
+              }
             >
               {r}
             </button>
@@ -75,14 +80,19 @@ export default function InputForm({ onSubmit, loading }: Props) {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        <PersonFields title="A" value={personA} onChange={setPersonA} />
-        <PersonFields title="B" value={personB} onChange={setPersonB} />
+        <PersonFields title="A" value={personA} onChange={setPersonA} accent="pink" />
+        <PersonFields title="B" value={personB} onChange={setPersonB} accent="purple" />
       </div>
 
       <button
         type="submit"
         disabled={!isValid() || loading}
-        className="w-full rounded-xl bg-brand-600 py-3 text-base font-semibold text-white shadow-md transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+        className="w-full rounded-xl py-3 text-base font-semibold text-white shadow-md transition disabled:cursor-not-allowed disabled:opacity-40"
+        style={{
+          background: isValid() && !loading
+            ? "linear-gradient(135deg, #e8789a, #9b85e8)"
+            : "#221e38",
+        }}
       >
         {loading ? "분석 중..." : "궁합 분석하기"}
       </button>
@@ -94,19 +104,32 @@ function PersonFields({
   title,
   value,
   onChange,
+  accent,
 }: {
   title: string;
   value: Person;
   onChange: (p: Person) => void;
+  accent: "pink" | "purple";
 }) {
   const patch = (p: Partial<Person>) => onChange({ ...value, ...p });
+  const cardClass = accent === "pink" ? "card card-pink" : "card card-purple";
+  const titleColor = accent === "pink" ? "text-brand-light" : "text-purple-light";
+  const iconBg = accent === "pink"
+    ? "bg-brand-dim border border-brand-border"
+    : "bg-purple-dim border border-purple-border";
+
   return (
-    <div className="rounded-2xl bg-white/80 p-5 shadow-sm ring-1 ring-slate-200">
-      <h2 className="mb-4 text-lg font-bold text-brand-700">{title}</h2>
+    <div className={cardClass}>
+      <div className="mb-4 flex items-center gap-3">
+        <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold ${iconBg} ${titleColor}`}>
+          {title}
+        </div>
+        <h2 className={`font-serif text-lg font-bold ${titleColor}`}>{title}</h2>
+      </div>
       <div className="space-y-3">
         <Field label="이름">
           <input
-            className="input"
+            className="input-dark"
             value={value.name}
             onChange={(e) => patch({ name: e.target.value })}
             placeholder="홍길동"
@@ -115,7 +138,7 @@ function PersonFields({
         <Field label="생년월일">
           <input
             type="date"
-            className="input"
+            className="input-dark"
             value={value.birthDate}
             onChange={(e) => patch({ birthDate: e.target.value })}
           />
@@ -123,14 +146,14 @@ function PersonFields({
         <Field label="출생 시간">
           <input
             type="time"
-            className="input"
+            className="input-dark"
             value={value.birthTime}
             onChange={(e) => patch({ birthTime: e.target.value })}
           />
         </Field>
         <Field label="성별">
           <select
-            className="input"
+            className="input-dark"
             value={value.gender}
             onChange={(e) => patch({ gender: e.target.value as Gender })}
           >
@@ -141,7 +164,7 @@ function PersonFields({
         </Field>
         <Field label="출생지">
           <input
-            className="input"
+            className="input-dark"
             value={value.birthPlace}
             onChange={(e) => patch({ birthPlace: e.target.value })}
             placeholder="서울"
@@ -149,7 +172,7 @@ function PersonFields({
         </Field>
         <Field label="MBTI">
           <select
-            className="input"
+            className="input-dark"
             value={value.mbti}
             onChange={(e) => patch({ mbti: e.target.value })}
           >
@@ -160,17 +183,27 @@ function PersonFields({
         </Field>
       </div>
       <style jsx>{`
-        .input {
+        .input-dark {
           width: 100%;
           border-radius: 0.5rem;
-          border: 1px solid rgb(226 232 240);
+          border: 1px solid rgba(255,255,255,0.07);
           padding: 0.5rem 0.75rem;
           font-size: 0.875rem;
-          background: white;
+          background: #1c1830;
+          color: #ede9f8;
+          transition: border-color 0.2s;
         }
-        .input:focus {
-          outline: 2px solid rgb(236 72 153);
-          outline-offset: 1px;
+        .input-dark:focus {
+          outline: none;
+          border-color: rgba(232,120,154,0.5);
+          box-shadow: 0 0 0 2px rgba(232,120,154,0.15);
+        }
+        .input-dark::placeholder {
+          color: #5a5475;
+        }
+        .input-dark option {
+          background: #1c1830;
+          color: #ede9f8;
         }
       `}</style>
     </div>
@@ -186,7 +219,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-slate-600">{label}</span>
+      <span className="mb-1 block text-xs font-medium text-txt-3">{label}</span>
       {children}
     </label>
   );

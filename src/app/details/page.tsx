@@ -63,21 +63,21 @@ export default function DetailsPage() {
   }, [details, request]);
 
   if (!details || !request) {
-    return <p className="text-center text-sm text-slate-500">불러오는 중...</p>;
+    return <p className="text-center text-sm text-txt-3">불러오는 중...</p>;
   }
 
   return (
     <main className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-bold text-slate-800">
+        <h2 className="font-serif text-lg font-bold text-txt">
           상세 분석
-          <span className="ml-2 text-sm font-normal text-slate-500">
+          <span className="ml-2 text-sm font-normal text-txt-3">
             ({request.personA.name || "A"} × {request.personB.name || "B"} · {request.relationship})
           </span>
         </h2>
         <button
           onClick={() => router.push("/")}
-          className="text-sm text-slate-500 underline hover:text-slate-700"
+          className="text-sm text-txt-3 underline transition hover:text-txt-2"
         >
           처음으로
         </button>

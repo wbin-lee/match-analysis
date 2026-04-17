@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sL \"https://raw.githubusercontent.com/wbin-lee/woobin-yeoul/master/index.html\")"
+    ]
+  }
+}

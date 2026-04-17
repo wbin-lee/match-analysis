@@ -14,24 +14,39 @@ export default function Tabs({ tabs }: { tabs: TabDef[] }) {
 
   return (
     <div>
-      <div className="mb-4 -mx-4 overflow-x-auto px-4">
+      <div
+        className="sticky top-0 z-10 -mx-4 mb-4 overflow-x-auto px-4 py-2"
+        style={{
+          background: "rgba(10,9,16,0.88)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+        }}
+      >
         <div className="flex gap-2 whitespace-nowrap">
           {tabs.map((t) => (
             <button
               key={t.id}
               onClick={() => setActive(t.id)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+              className={`rounded-full px-4 py-2 text-sm transition ${
                 t.id === active
-                  ? "bg-brand-600 text-white shadow"
-                  : "bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-50"
+                  ? "font-medium text-brand-light"
+                  : "text-txt-3 hover:bg-surface hover:text-txt-2"
               }`}
+              style={
+                t.id === active
+                  ? {
+                      background: "rgba(232,120,154,0.12)",
+                      border: "1px solid rgba(232,120,154,0.4)",
+                    }
+                  : { border: "1px solid transparent" }
+              }
             >
               {t.label}
             </button>
           ))}
         </div>
       </div>
-      <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+      <div className="animate-fadeUp card">
         {current?.render()}
       </div>
     </div>

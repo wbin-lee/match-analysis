@@ -73,14 +73,21 @@ export default function HomePage() {
               setSummary(null);
               setRequest(null);
             }}
-            className="text-sm text-slate-500 underline hover:text-slate-700"
+            className="text-sm text-txt-3 underline transition hover:text-txt-2"
           >
             다시 입력하기
           </button>
         </>
       )}
       {error && (
-        <div className="rounded-xl bg-rose-50 p-4 text-sm text-rose-700 ring-1 ring-rose-200">
+        <div
+          className="rounded-xl p-4 text-sm"
+          style={{
+            background: "rgba(232,120,90,0.12)",
+            border: "1px solid rgba(232,120,90,0.3)",
+            color: "#f5b09a",
+          }}
+        >
           {error}
         </div>
       )}

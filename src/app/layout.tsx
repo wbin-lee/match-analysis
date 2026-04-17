@@ -9,13 +9,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body>
-        <div className="mx-auto min-h-screen w-full max-w-3xl px-4 py-8 md:py-12">
-          <header className="mb-8 flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-brand-700">
-              <a href="/">궁합 분석</a>
+        <div className="mx-auto min-h-screen w-full max-w-[860px] px-4 py-8 md:px-6 md:py-14">
+          <header className="mb-10 flex items-center justify-between">
+            <h1 className="font-serif text-2xl font-bold text-brand-light">
+              <a href="/" className="transition hover:opacity-80">궁합 분석</a>
             </h1>
-            <span className="text-sm text-slate-500">사주 · 별자리 · MBTI</span>
+            <span className="text-sm text-txt-3">사주 · 별자리 · MBTI</span>
           </header>
           {children}
         </div>

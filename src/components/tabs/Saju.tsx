@@ -2,20 +2,23 @@
 
 import type { DetailsResult, FiveElements } from "@/lib/types";
 
-const LABELS: { key: keyof FiveElements; label: string; color: string }[] = [
-  { key: "wood", label: "목(木)", color: "bg-emerald-500" },
-  { key: "fire", label: "화(火)", color: "bg-rose-500" },
-  { key: "earth", label: "토(土)", color: "bg-amber-500" },
-  { key: "metal", label: "금(金)", color: "bg-slate-400" },
-  { key: "water", label: "수(水)", color: "bg-sky-500" },
+const LABELS: { key: keyof FiveElements; label: string; color: string; bg: string }[] = [
+  { key: "wood", label: "목(木)", color: "#a8d470", bg: "rgba(168,212,112,0.25)" },
+  { key: "fire", label: "화(火)", color: "#f5b09a", bg: "rgba(232,120,90,0.25)" },
+  { key: "earth", label: "토(土)", color: "#f0c878", bg: "rgba(240,200,120,0.25)" },
+  { key: "metal", label: "금(金)", color: "#d3d1c7", bg: "rgba(211,209,199,0.25)" },
+  { key: "water", label: "수(水)", color: "#7ec5f0", bg: "rgba(94,168,223,0.25)" },
 ];
 
-function Bar({ value, color }: { value: number; color: string }) {
+function Bar({ value, color, bg }: { value: number; color: string; bg: string }) {
   return (
-    <div className="h-2.5 w-full rounded-full bg-slate-100">
+    <div className="bar-track">
       <div
-        className={`h-2.5 rounded-full ${color}`}
-        style={{ width: `${Math.min(100, Math.max(0, value))}%` }}
+        className="bar-fill"
+        style={{
+          width: `${Math.min(100, Math.max(0, value))}%`,
+          background: `linear-gradient(90deg, ${bg}, ${color})`,
+        }}
       />
     </div>
   );
@@ -23,16 +26,16 @@ function Bar({ value, color }: { value: number; color: string }) {
 
 function ElementsBlock({ title, fe }: { title: string; fe: FiveElements }) {
   return (
-    <div className="rounded-xl bg-slate-50 p-4 ring-1 ring-slate-200">
-      <h4 className="mb-3 text-sm font-semibold text-slate-700">{title}</h4>
+    <div className="rounded-xl border border-border bg-surface-2 p-4">
+      <h4 className="mb-3 font-serif text-sm font-bold text-txt">{title}</h4>
       <ul className="space-y-2">
-        {LABELS.map(({ key, label, color }) => (
+        {LABELS.map(({ key, label, color, bg }) => (
           <li key={key} className="space-y-1">
-            <div className="flex items-center justify-between text-xs text-slate-600">
-              <span>{label}</span>
-              <span className="font-mono">{fe[key] ?? 0}</span>
+            <div className="flex items-center justify-between text-xs">
+              <span style={{ color }}>{label}</span>
+              <span className="font-mono text-txt-3">{fe[key] ?? 0}</span>
             </div>
-            <Bar value={(fe[key] as number) ?? 0} color={color} />
+            <Bar value={(fe[key] as number) ?? 0} color={color} bg={bg} />
           </li>
         ))}
       </ul>
@@ -48,8 +51,8 @@ export default function Saju({ data }: { data: DetailsResult["saju"] }) {
         <ElementsBlock title="B의 오행" fe={data.personB} />
       </div>
       <section>
-        <h3 className="mb-2 text-base font-semibold text-slate-700">오행 분석</h3>
-        <p className="whitespace-pre-line text-sm leading-relaxed text-slate-700">
+        <h3 className="mb-2 font-serif text-base font-bold text-txt">오행 분석</h3>
+        <p className="whitespace-pre-line text-sm leading-relaxed text-txt-2">
           {data.analysis}
         </p>
       </section>
