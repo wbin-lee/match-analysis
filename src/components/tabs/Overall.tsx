@@ -18,16 +18,42 @@ import {
 import type { DetailsResult, Names } from "@/lib/types";
 
 export default function Overall({ data, names }: { data: DetailsResult["overall"]; names: Names }) {
+  const combined = data.radar.map((r) => ({
+    label: r.label,
+    score: Math.round((r.personA + r.personB) / 2),
+  }));
+
   return (
     <div className="space-y-8">
       <div className="h-80 w-full">
         <ResponsiveContainer>
-          <RadarChart data={data.radar}>
+          <RadarChart data={combined}>
             <PolarGrid stroke="rgba(255,255,255,0.07)" />
-            <PolarAngleAxis dataKey="label" tick={{ fontSize: 12, fill: "#c4bdd9" }} />
-            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: "#8a82a6" }} />
-            <Radar name={names.nameA} dataKey="personA" stroke="#e8789a" fill="#e8789a" fillOpacity={0.25} />
-            <Radar name={names.nameB} dataKey="personB" stroke="#9b85e8" fill="#9b85e8" fillOpacity={0.2} />
+            <PolarAngleAxis
+              dataKey="label"
+              tick={({ payload, x, y, textAnchor, ...rest }) => {
+                const item = combined.find((c) => c.label === payload.value);
+                return (
+                  <text x={x} y={y} textAnchor={textAnchor} fill="#f4f0ff" fontSize={12} fontWeight={500} {...rest}>
+                    {payload.value} <tspan fill="#f5b8cc" fontWeight={600}>{item?.score ?? ""}</tspan>
+                  </text>
+                );
+              }}
+            />
+            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
+            <Radar
+              name={`${names.nameA} × ${names.nameB}`}
+              dataKey="score"
+              stroke="#e8789a"
+              fill="url(#radarGradient)"
+              fillOpacity={0.3}
+            />
+            <defs>
+              <linearGradient id="radarGradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#e8789a" />
+                <stop offset="100%" stopColor="#9b85e8" />
+              </linearGradient>
+            </defs>
             <Legend wrapperStyle={{ color: "#c4bdd9" }} />
             <Tooltip
               contentStyle={{
