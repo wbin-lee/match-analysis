@@ -6,9 +6,10 @@ interface Props {
   result: SummaryResult;
   onViewDetails: () => void;
   detailsLoading: boolean;
+  streamProgress?: number;
 }
 
-export default function SummaryCard({ result, onViewDetails, detailsLoading }: Props) {
+export default function SummaryCard({ result, onViewDetails, detailsLoading, streamProgress = 0 }: Props) {
   return (
     <section className="animate-fadeUp card card-pink">
       <div className="mb-8 flex flex-col items-center">
@@ -35,18 +36,32 @@ export default function SummaryCard({ result, onViewDetails, detailsLoading }: P
           </li>
         ))}
       </ul>
-      <button
-        onClick={onViewDetails}
-        disabled={detailsLoading}
-        className="w-full rounded-xl py-3.5 font-semibold text-white shadow-lg transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
-        style={{
-          background: detailsLoading
-            ? "#262042"
-            : "linear-gradient(135deg, #e8789a, #9b85e8)",
-        }}
-      >
-        {detailsLoading ? "상세 분석 생성 중..." : "자세히 보기 (MVP · 결제 비활성화)"}
-      </button>
+
+      {detailsLoading ? (
+        <div className="space-y-3">
+          <div className="bar-track" style={{ height: 8 }}>
+            <div
+              className="bar-fill"
+              style={{
+                width: `${streamProgress}%`,
+                background: "linear-gradient(90deg, #e8789a, #9b85e8)",
+                transition: "width 0.3s ease-out",
+              }}
+            />
+          </div>
+          <p className="text-center text-[13px] text-txt-3">
+            상세 분석 생성 중... {streamProgress > 0 && `${streamProgress}%`}
+          </p>
+        </div>
+      ) : (
+        <button
+          onClick={onViewDetails}
+          className="w-full rounded-xl py-3.5 font-semibold text-white shadow-lg transition hover:brightness-110"
+          style={{ background: "linear-gradient(135deg, #e8789a, #9b85e8)" }}
+        >
+          자세히 보기
+        </button>
+      )}
     </section>
   );
 }

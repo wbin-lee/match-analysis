@@ -30,6 +30,8 @@ export interface MatchRequest {
 export interface SummaryResult {
   overallScore: number;
   summary: string[];
+  fiveElementsA?: FiveElements;
+  fiveElementsB?: FiveElements;
 }
 
 export interface FiveElements {

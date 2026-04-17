@@ -35,6 +35,18 @@ function extractText(resp: Anthropic.Messages.Message): string {
     .join("");
 }
 
+export function callClaudeStream(opts: CallOpts) {
+  const { model, system, user, maxTokens = 4096 } = opts;
+  const anthropic = getClient();
+
+  return anthropic.messages.stream({
+    model,
+    max_tokens: maxTokens,
+    system,
+    messages: [{ role: "user", content: user }],
+  });
+}
+
 export async function callClaude<T>(opts: CallOpts): Promise<T> {
   const { model, system, user, maxTokens = 4096 } = opts;
   const anthropic = getClient();
